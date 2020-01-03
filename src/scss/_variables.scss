@@ -1,0 +1,45 @@
+
+
+$color-primary: #eb2f64;
+$color-primary-light: lighten($color-primary,15%);
+$color-primary-dark: darken($color-primary,15%);
+
+$color-secondary: #ccc;
+$color-secondary-light: lighten($color-secondary,15%);
+$color-secondary-dark: darken($color-secondary,15%);
+
+$color-third: #777;
+$color-third-light: lighten($color-third,15%);
+$color-third-dark: darken($color-third,15%);
+
+$color-shadow: #111;
+$color-shadow-light: lighten($color-shadow,15%);
+$color-shadow-dark: darken($color-shadow,15%);
+
+$shadow-x-axis-none: 0;
+$shadow-x-axis-xs: .5rem;
+$shadow-x-axis-s: 1rem;
+$shadow-x-axis-m: 1.5rem;
+$shadow-x-axis-l: 2.5rem;
+$shadow-x-axis-xl: 3.5rem;
+
+$shadow-y-axis-none: 0;
+$shadow-y-axis-xs: .5rem;
+$shadow-y-axis-s: 1rem;
+$shadow-y-axis-m: 1.5rem;
+$shadow-y-axis-l: 2.5rem;
+$shadow-y-axis-xl: 3.5rem;
+
+$shadow-blur-s: 2px;
+$shadow-blur-m: .5rem;
+$shadow-blur-l: 1rem;
+
+@mixin box-shadow($x-axis: $shadow-x-axis-none, $y-axis: $shadow-y-axis-xs, $blur: $shadow-blur-l, $color: $color-shadow) {
+    box-shadow: $x-axis $y-axis $blur $color;
+}
+
+$bp-largest: 75em;     // 1200px
+$bp-large: 68.75em;    // 1100px
+$bp-medium: 56.25em;   // 900px
+$bp-small: 37.5em;     // 600px
+$bp-smallest: 31.25em; // 500px
