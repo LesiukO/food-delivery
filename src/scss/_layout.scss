@@ -43,12 +43,20 @@
     }
 
     &__link {
+        display: flex;
         text-transform: uppercase;
         @include transition-medium()
 
         &:hover {
             color: $color-tertiary-lighter;
         }
+    }
+
+    &__icon {
+        height: 2rem;
+        width: 2rem;
+        margin-right: 1rem;
+        fill: currentColor;
     }
 }
 
@@ -113,11 +121,18 @@
     &__btn {
         flex-basis: 3rem;
     }
+
+    &__icon {
+        height: 2rem;
+        width: 2rem;
+        fill: $color-primary;
+    }
 }
 
 .logo {
     font-size: 6rem;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .cart {
@@ -134,6 +149,10 @@
         border: 1px solid $color-primary;
     }
 
+    &:hover &__btn {
+        border-left: 1px solid $color-primary;
+    }
+
     & > * {
         padding: .8rem 1.3rem;
         color: inherit;
@@ -141,6 +160,14 @@
 
     &__btn {
         flex-basis: 3rem;
+        border-left: 1px solid currentColor;
+        @include transition-medium()
+    }
+
+    &__icon {
+        height: 2rem;
+        width: 2rem;
+        fill: $color-primary;
     }
 }
 
@@ -169,15 +196,31 @@
             border-bottom: 1px solid $color-secondary;
         }
 
+        &:first-child &__icon {
+            margin-right: 0;
+        }
+
         &:last-child {
             border-right: 1px solid $color-tertiary;
         }
     }
 
     &__link {
-        display: inline-block;
+        display: flex;
         padding: 1rem 1.5rem;
         text-transform: uppercase;
+    }
+
+    &__icon {
+        height: 2rem;
+        width: 2rem;
+        fill: $color-secondary;
+        
+        margin-right: 1rem;
+    }
+
+    &__icon-home {
+        margin-right: 0;
     }
 }
 
@@ -351,10 +394,8 @@
 }
 
 .card-wrapper {
-    // padding: 1.5rem;
     flex: 0 0 calc( 25% - 2rem );
     margin-bottom: 2rem;
-    min-width: 30rem;
     display: flex;
     flex-direction: row;
 }

@@ -36,9 +36,16 @@ $color-shadow-dark: darken($color-shadow,30%);
 }
 
 @mixin abs-center {
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+@mixin abs-center-vert {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 @mixin abs-center-horizontal {
