@@ -486,6 +486,7 @@
     font-size: 1.6em;
     color: $color-secondary;
     text-align: center;
+    vertical-align: middle;
 
     &__privacy {
         width: 100%;
@@ -495,6 +496,7 @@
         display: flex;
         align-items: center;
         justify-content: space-around;
+        background-color: $color-tertiary-dark;
     }
 
     &__logo {
@@ -503,5 +505,78 @@
 
     &__search {
         flex: 0 0 30%;
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba($color-tertiary, .8);
+    z-index: 5;
+    display: flex;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.2);
+    @include transition-medium()
+
+    &--visible {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+    }
+
+    &__inner {
+        flex: 0 1 70rem;
+        margin: auto;
+        background-color: rgba($color-tertiary-darker, 1);
+
+        height: 30rem;
+    }
+
+    &__header {
+        background-color: rgba($color-tertiary-light, 1);
+        border-bottom: 1px solid $color-tertiary-dark;
+
+        position: relative;
+    }
+
+    &__title {
+        font-size: 1.6rem;
+        text-transform: uppercase;
+        color: rgba($color-tertiary-darker, 1);
+    }
+
+    &__close {
+        position: absolute;
+        top: 13px;
+        right: 13px;
+        width: 30px;
+        height: 30px;
+
+        &::before,
+        &::after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            z-index: 3;
+            background-color: rgba($color-tertiary-darker, 1);
+            border-radius: 5px;
+            cursor: pointer;
+            top: 50%;
+        }
+
+        &::before {
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        &::after {
+            transform: translateY(-50%) rotate(-45deg);
+        }
     }
 }
