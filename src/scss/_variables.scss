@@ -1,46 +1,55 @@
-$color-base: 30;
+$color-base: 100;
 
 // $color-primary: rgb(27, 173, 27);
 $color-primary: hsl($color-base, 60%, 40%);
-$color-primary-light: lighten($color-primary,30%);
-$color-primary-dark: darken($color-primary,30%);
-$color-primary-darker: darken($color-primary,34%);
+$color-primary-light: hsl($color-base, 60%, 65%);
+$color-primary-lighter: hsl($color-base, 60%, 85%);
+$color-primary-dark: hsl($color-base, 60%, 25%);
+$color-primary-darker: hsl($color-base, 60%, 15%);
 
 // $color-secondary: rgb(255, 255, 255);
 $color-secondary: hsl($color-base, 60%, 92%);
 
 // $color-tertiary: #777;
 $color-tertiary: hsl($color-base, 5%, 55%);
-$color-tertiary-light: lighten($color-tertiary,30%);
-$color-tertiary-lighter: lighten($color-tertiary,60%);
-$color-tertiary-dark: darken($color-tertiary,30%);
-$color-tertiary-darker: darken($color-tertiary,60%);
+$color-tertiary-light: hsl($color-base, 5%, 75%);
+$color-tertiary-lighter: hsl($color-base, 5%, 95%);
+$color-tertiary-dark: hsl($color-base, 5%, 45%);
+$color-tertiary-darker: hsl($color-base, 5%, 25%);
 
 // $color-shadow: #111;
 $color-shadow: #111;
 $color-shadow-light: lighten($color-shadow,30%);
 $color-shadow-dark: darken($color-shadow,30%);
 
-$shadow-x-axis-none: 0;
-$shadow-x-axis-xs: .5rem;
-$shadow-x-axis-s: 1rem;
-$shadow-x-axis-m: 1.5rem;
-$shadow-x-axis-l: 2.5rem;
-$shadow-x-axis-xl: 3.5rem;
 
-$shadow-y-axis-none: 0;
-$shadow-y-axis-xs: .5rem;
-$shadow-y-axis-s: 1rem;
-$shadow-y-axis-m: 1.5rem;
-$shadow-y-axis-l: 2.5rem;
-$shadow-y-axis-xl: 3.5rem;
+@mixin box-shadow {
+    box-shadow: 0px .5rem 1rem 0px rgba(0,0,0,0.5);
+}
 
-$shadow-blur-s: 2px;
-$shadow-blur-m: .5rem;
-$shadow-blur-l: 1rem;
+@mixin box-shadow-small {
+    box-shadow: 0px .5rem 1rem 0px rgba(0,0,0,0.2);
+}
 
-@mixin box-shadow($x-axis: $shadow-x-axis-none, $y-axis: $shadow-y-axis-xs, $blur: $shadow-blur-l, $color: $color-shadow) {
-    box-shadow: $x-axis $y-axis $blur $color;
+@mixin transition-medium {
+    transition: .3s;
+}
+
+@mixin abs-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin abs-center-horizontal {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@mixin flex-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 $bp-largest: 75em;     // 1200px

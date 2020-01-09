@@ -2,12 +2,15 @@
     max-width: 150rem;
     margin: 0 auto;
     min-height: 50rem;
-    box-shadow: var(--shadow-dark);
     @include box-shadow()
 }
 
 .page-section {
     padding: 1.5rem 0;
+}
+
+.page-section--small-padding {
+    padding: .5rem 0;
 }
 
 .wrapper {
@@ -23,7 +26,9 @@
 .top-bar {
     display: flex;
     justify-content: flex-end;
-    background-color: $color-tertiary;
+
+    background-color: $color-tertiary-darker;
+    background-image: linear-gradient(to right, rgba($color-tertiary-dark, 1), rgba($color-tertiary-darker, 1));
 }
 
 .top-bar-menu {
@@ -31,19 +36,15 @@
     font-size: 1.2rem;
 
     &__item {
-        list-style: none;
 
         &:not(:last-child) {
             margin-right: 1.5rem;
         }
-
     }
 
     &__link {
-        color: inherit;
-        text-decoration: none;
         text-transform: uppercase;
-        transition: .4s;
+        @include transition-medium()
 
         &:hover {
             color: $color-tertiary-lighter;
@@ -57,9 +58,8 @@
     align-items: center;
     font-size: 1.5rem;
 
-    height: 12rem;
     background-color: $color-tertiary-dark;
-    padding: 0 2.5rem;
+    background-image: linear-gradient(to right, rgba($color-tertiary, 1), rgba($color-tertiary-dark, 1));
 
     & > * {
         flex-basis: 30rem;
@@ -70,10 +70,10 @@
     display: flex;
     align-items: stretch;
 
-    color: $color-tertiary-light;
+    color: $color-tertiary-lighter;
     border: 1px solid currentColor;
     border-radius: 22px;
-    transition: .4s;
+    @include transition-medium()
 
     &:hover{
         border: 1px solid $color-primary;
@@ -103,7 +103,11 @@
         border: none;
         border-left: 1px solid currentColor;
         border-right: 1px solid currentColor;
-        transition: .4s;
+        @include transition-medium()
+    }
+
+    &__input::placeholder {
+        color: currentColor;
     }
 
     &__btn {
@@ -121,13 +125,13 @@
     align-items: stretch;
     justify-content: flex-end;
 
-    color: $color-tertiary-light;
+    color: $color-tertiary-lighter;
     border: 1px solid currentColor;
     border-radius: 22px;
-    transition: .4s;
+    @include transition-medium()
 
     &:hover{
-        border: 1px solid $color-tertiary-lighter;
+        border: 1px solid $color-primary;
     }
 
     & > * {
@@ -143,22 +147,26 @@
 .navbar{
     display: flex;
     justify-content: center;
-    background-color: $color-primary;
     font-size: 1.3rem;
     font-weight: 500;
     letter-spacing: 2px;
+
+    background-color: $color-primary;
+    background-image: linear-gradient(to right, rgba($color-primary, 1), rgba($color-primary-dark, 1));
 }
 
 .main-menu {
     display: flex;
-    list-style: none;
+    color: $color-secondary;
 
     &__item {
         border-left: 1px solid $color-tertiary;
-        transition: .4s;
+        border-bottom: 1px solid $color-primary;
+        @include transition-medium()
 
         &:hover {
             background-color: $color-tertiary-darker;
+            border-bottom: 1px solid $color-secondary;
         }
 
         &:last-child {
@@ -169,9 +177,7 @@
     &__link {
         display: inline-block;
         padding: 1rem 1.5rem;
-        text-decoration: none;
         text-transform: uppercase;
-        color: $color-secondary;
     }
 }
 
@@ -187,12 +193,10 @@
 
     &__text {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         font-weight: 600;
         text-align: center;
         text-transform: uppercase;
+        @include abs-center()
     }
 
     &__title {
@@ -237,7 +241,7 @@
     height: auto;
     position: relative;
     overflow: hidden;
-    transition: .4s;
+    @include transition-medium()
 
     &::before {
         content: '';
@@ -248,17 +252,13 @@
         bottom: 0;
         left: 0;
         background-color: rgba($color-primary-dark, 0);
-        transition: .4s;
+        @include transition-medium()
     }
 
     &:hover {
         &::before {
             background-color: rgba($color-primary-dark, .6);
         }
-    }
-
-    &:hover &__btn {
-        bottom: 3rem;
     }
 
     &__img {
@@ -269,10 +269,21 @@
     &__btn {
         position: absolute;
         z-index: 20;
-        left: 50%;
-        transform: translateX(-50%);
         bottom: -3rem;
-        transition: .4s;
+        @include abs-center-horizontal()
+        @include transition-medium()
+
+        &:hover {
+            font-size: 1.4em;
+        }
+    }
+
+    &:hover {
+        @include box-shadow-small()
+    }
+
+    &:hover &__btn {
+        bottom: 3rem;
     }
 }
 
@@ -291,7 +302,6 @@
 .tabs {
     display: flex;
     justify-content: space-between;
-    list-style: none;
     margin-bottom: 2rem;
 
     &__item {
@@ -302,16 +312,20 @@
         font-size: 1.5rem;
         background-color: $color-tertiary-dark;
         padding: 1rem;
-        transition: .4s;
+        cursor: pointer;
+        @include transition-medium()
+        @include box-shadow-small()
 
         &:hover {
             background-color: $color-primary;
+            @include box-shadow()
         }
     }
 
     &__item--active {
         background-color: $color-primary;
         position: relative;
+        @include box-shadow()
 
         &::after {
             content: '';
@@ -328,20 +342,31 @@
 }
 
 .cards {
+    flex: 1 0 100%;
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.card-wrapper {
+    // padding: 1.5rem;
+    flex: 0 0 calc( 25% - 2rem );
+    margin-bottom: 2rem;
+    min-width: 30rem;
+    display: flex;
+    flex-direction: row;
 }
 
 .card {
+    flex: 1;
+
     background: $color-secondary;
-    // height: 10rem;
-    flex-basis: 18%;
-    margin-bottom: 2rem;
-    margin-right: 2rem;
     padding: 3px;
     border: 2px solid transparent;
-    transition: .4s;
+    @include transition-medium()
+    @include box-shadow-small()
 
     &__photo {
         width: 100%;
@@ -354,7 +379,129 @@
         display: block;
     }
 
+    &__line {
+        background: $color-tertiary-lighter;
+        margin: 15px 0;
+        display: inline-block;
+        width: 100%;
+
+        &--small {
+            width: 40%;
+            margin: .5rem 0;
+        }
+
+        &:last-child {
+            margin: 0.5rem 0;
+        }
+    }
+
+    &__info {
+        text-align: center;
+        color: $color-tertiary-darker;
+    }
+
+    &__title {
+        font-size: 1.6rem;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    &__price {
+        font-size: 1.5rem;
+    }
+
+    &__to-buy {
+        display: inline-block;
+        width: 70%;
+        padding: .5rem 0;
+        background-color: $color-tertiary-darker;
+        border: 1px solid $color-tertiary;
+        border-radius: 25px;
+        color: $color-primary;
+        font-size: 1.4rem;
+        margin: 1rem 0;
+        @include transition-medium()
+
+        &:hover {
+            border: 1px solid $color-primary-lighter;
+            @include box-shadow-small()
+        }
+    }
+
+    &__to-buy > * {
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+        padding: .4rem .5rem .5rem .5rem;
+        line-height: 1;
+    }
+
+    &__to-buy-buttons {
+        width: 2.5rem;
+        height: 2.5rem;
+        color: $color-primary-light;
+        border-radius: 50%;
+        background-color: $color-tertiary;
+        border: 1px solid $color-tertiary-light;
+        @include transition-medium()
+        cursor: pointer;
+
+        &:hover {
+            background-color: $color-primary;
+        }
+    }
+
+    &__minus {
+
+    }
+
+    &__count {
+        color: $color-primary-lighter;
+    }
+
+    &__plus {
+
+    }
+
+    &__btn-buy {
+        text-transform: uppercase;
+
+        &:hover {
+            color: $color-primary-light;
+            @include transition-medium()
+        }
+    }
+
     &:hover {
         border: 2px solid $color-primary;
+        @include box-shadow()
+    }
+}
+
+.footer {
+    width: 100%;
+    background-color: $color-tertiary-darker;
+    font-size: 1.6em;
+    color: $color-secondary;
+    text-align: center;
+
+    &__privacy {
+        width: 100%;
+    }
+
+    &__bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    &__logo {
+        flex: 0 0 30%;
+    }
+
+    &__search {
+        flex: 0 0 30%;
     }
 }
