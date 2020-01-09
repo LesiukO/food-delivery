@@ -1,18 +1,22 @@
+$color-base: 30;
 
-
-$color-primary: rgb(27, 173, 27);
+// $color-primary: rgb(27, 173, 27);
+$color-primary: hsl($color-base, 60%, 40%);
 $color-primary-light: lighten($color-primary,30%);
 $color-primary-dark: darken($color-primary,30%);
 $color-primary-darker: darken($color-primary,34%);
 
-$color-secondary: rgb(255, 255, 255);
+// $color-secondary: rgb(255, 255, 255);
+$color-secondary: hsl($color-base, 60%, 92%);
 
-$color-tertiary: #777;
+// $color-tertiary: #777;
+$color-tertiary: hsl($color-base, 5%, 55%);
 $color-tertiary-light: lighten($color-tertiary,30%);
 $color-tertiary-lighter: lighten($color-tertiary,60%);
 $color-tertiary-dark: darken($color-tertiary,30%);
 $color-tertiary-darker: darken($color-tertiary,60%);
 
+// $color-shadow: #111;
 $color-shadow: #111;
 $color-shadow-light: lighten($color-shadow,30%);
 $color-shadow-dark: darken($color-shadow,30%);
