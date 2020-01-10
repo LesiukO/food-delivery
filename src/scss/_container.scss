@@ -1,0 +1,12 @@
+.container {
+    max-width: 150rem;
+    margin: 0 auto;
+    min-height: 50rem;
+    @include box-shadow()
+
+    @media only screen and (max-width: $bp-largest) {
+        margin: 0;
+        min-width: 100%;
+        width: 100%;
+    }
+}

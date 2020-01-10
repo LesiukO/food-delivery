@@ -1,0 +1,32 @@
+.footer {
+    width: 100%;
+    background-color: $color-tertiary-darker;
+    font-size: 1.6em;
+    color: $color-secondary;
+    text-align: center;
+    vertical-align: middle;
+
+    &__privacy {
+        width: 100%;
+    }
+
+    &__bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        background-color: $color-tertiary-dark;
+
+        @media only screen and (max-width: $bp-small) {
+            flex-direction: column;
+            padding-bottom: 1rem;
+        }
+    }
+
+    &__logo {
+        flex: 0 0 30%;
+    }
+
+    &__search {
+        flex: 0 0 30%;
+    }
+}

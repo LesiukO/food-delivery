@@ -1,0 +1,120 @@
+.card {
+    flex: 1;
+
+    background: $color-secondary;
+    padding: 3px;
+    border: 2px solid transparent;
+    @include transition-medium()
+    @include box-shadow-small()
+
+    &__photo {
+        width: 100%;
+        height: auto;
+    }
+
+    &__img {
+        width: 100%;
+        max-width: 100%;
+        display: block;
+    }
+
+    &__line {
+        background: $color-tertiary-lighter;
+        margin: 15px 0;
+        display: inline-block;
+        width: 100%;
+
+        &--small {
+            width: 40%;
+            margin: .5rem 0;
+        }
+
+        &:last-child {
+            margin: 0.5rem 0;
+        }
+    }
+
+    &__info {
+        text-align: center;
+        color: $color-tertiary-darker;
+    }
+
+    &__title {
+        font-size: 1.6rem;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    &__price {
+        font-size: 1.5rem;
+    }
+
+    &__to-buy {
+        display: inline-block;
+        width: 70%;
+        padding: .5rem 0;
+        background-color: $color-tertiary-darker;
+        border: 1px solid $color-tertiary;
+        border-radius: 25px;
+        color: $color-primary;
+        font-size: 1.4rem;
+        margin: 1rem 0;
+        @include transition-medium()
+
+        &:hover {
+            border: 1px solid $color-primary-lighter;
+            @include box-shadow-small()
+        }
+    }
+
+    &__to-buy > * {
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+        padding: .4rem .5rem .5rem .5rem;
+        line-height: 1;
+    }
+
+    &__to-buy-buttons {
+        width: 2.5rem;
+        height: 2.5rem;
+        color: $color-primary-light;
+        border-radius: 50%;
+        background-color: $color-tertiary;
+        border: 1px solid $color-tertiary-light;
+        @include transition-medium()
+        cursor: pointer;
+
+        &:hover {
+            background-color: $color-primary;
+        }
+    }
+
+    &__minus {
+
+    }
+
+    &__count {
+        color: $color-primary-lighter;
+    }
+
+    &__plus {
+
+    }
+
+    &__btn-buy {
+        text-transform: uppercase;
+
+        &:hover {
+            color: $color-primary-light;
+            @include transition-medium()
+        }
+    }
+
+    &:hover {
+        border: 2px solid $color-primary;
+        @include box-shadow()
+    }
+}

@@ -1,0 +1,28 @@
+.top-bar-menu {
+    display: flex;
+    font-size: 1.2rem;
+
+    &__item {
+
+        &:not(:last-child) {
+            margin-right: 1.5rem;
+        }
+    }
+
+    &__link {
+        display: flex;
+        text-transform: uppercase;
+        @include transition-medium()
+
+        &:hover {
+            color: $color-tertiary-lighter;
+        }
+    }
+
+    &__icon {
+        height: 2rem;
+        width: 2rem;
+        margin-right: 1rem;
+        fill: currentColor;
+    }
+}

@@ -1,0 +1,7 @@
+.top-bar {
+    display: flex;
+    justify-content: flex-end;
+
+    background-color: $color-tertiary-darker;
+    background-image: linear-gradient(to right, rgba($color-tertiary-dark, 1), rgba($color-tertiary-darker, 1));
+}

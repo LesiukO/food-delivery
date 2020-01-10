@@ -1,0 +1,16 @@
+.banners {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    padding: 2rem;
+
+    &__item {
+        flex: 0 0 24%;
+        margin-bottom: 2rem;
+
+        @media only screen and (max-width: $bp-medium) {
+            flex: 0 0 49%;
+        }
+    }
+}

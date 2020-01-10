@@ -1,0 +1,41 @@
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+
+    &__item {
+        flex-grow: 1;
+        color: $color-secondary;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 1.5rem;
+        background-color: $color-tertiary-dark;
+        padding: 1rem;
+        cursor: pointer;
+        @include transition-medium()
+        @include box-shadow-small()
+
+        &:hover {
+            background-color: $color-primary;
+            @include box-shadow()
+        }
+    }
+
+    &__item--active {
+        background-color: $color-primary;
+        position: relative;
+        @include box-shadow()
+
+        &::after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            width: 1.5rem;
+            height: 1.5rem;
+            background-color: $color-primary;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            bottom: -0.5rem;
+        }
+    }
+}

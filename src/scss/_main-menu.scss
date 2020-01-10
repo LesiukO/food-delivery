@@ -1,0 +1,41 @@
+.main-menu {
+    display: flex;
+    color: $color-secondary;
+
+    &__item {
+        border-left: 1px solid $color-tertiary;
+        border-bottom: 1px solid $color-primary;
+        @include transition-medium()
+
+        &:hover {
+            background-color: $color-tertiary-darker;
+            border-bottom: 1px solid $color-secondary;
+        }
+
+        &:first-child &__icon {
+            margin-right: 0;
+        }
+
+        &:last-child {
+            border-right: 1px solid $color-tertiary;
+        }
+    }
+
+    &__link {
+        display: flex;
+        padding: 1rem 1.5rem;
+        text-transform: uppercase;
+    }
+
+    &__icon {
+        height: 2rem;
+        width: 2rem;
+        fill: $color-secondary;
+        
+        margin-right: 1rem;
+    }
+
+    &__icon-home {
+        margin-right: 0;
+    }
+}

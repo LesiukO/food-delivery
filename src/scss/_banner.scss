@@ -1,0 +1,49 @@
+.banner {
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    @include transition-medium()
+
+    &::before {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba($color-primary-dark, 0);
+        @include transition-medium()
+    }
+
+    &:hover {
+        &::before {
+            background-color: rgba($color-primary-dark, .6);
+        }
+    }
+
+    &__img {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    &__btn {
+        position: absolute;
+        z-index: 20;
+        bottom: -3rem;
+        @include abs-center-horizontal()
+        @include transition-medium()
+
+        &:hover {
+            font-size: 1.4em;
+        }
+    }
+
+    &:hover {
+        @include box-shadow-small()
+    }
+
+    &:hover &__btn {
+        bottom: 3rem;
+    }
+}

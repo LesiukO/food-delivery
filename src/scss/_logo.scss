@@ -1,0 +1,13 @@
+.logo {
+    font-size: 6rem;
+    text-align: center;
+    text-transform: uppercase;
+
+    @media only screen and (max-width: $bp-medium) {
+        font-size: 5rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+        font-size: 4rem;
+    }
+}

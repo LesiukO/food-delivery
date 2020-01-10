@@ -1,0 +1,55 @@
+.slide {
+    position: relative;
+    width: 100%;
+
+    &__text {
+        position: absolute;
+        font-weight: 600;
+        text-align: center;
+        text-transform: uppercase;
+        @include abs-center()
+    }
+
+    &__title {
+        font-size: 8rem;
+        color: $color-primary-darker;
+
+        @media only screen and (max-width: $bp-medium) {
+            font-size: 6rem;
+        }
+
+        @media only screen and (max-width: $bp-small) {
+            font-size: 5rem;
+        }
+
+        @media only screen and (max-width: $bp-smallest) {
+            font-size: 3rem;
+        }
+    }
+
+    &__sub-title {
+        display: inline-block;
+        padding: 0.5rem;
+        border-bottom: 1px solid currentColor;
+        font-size: 5rem;
+        font-weight: 500;
+        color: $color-primary;
+
+        @media only screen and (max-width: $bp-medium) {
+            font-size: 4rem;
+        }
+
+        @media only screen and (max-width: $bp-small) {
+            font-size: 3.5rem;
+        }
+
+        @media only screen and (max-width: $bp-smallest) {
+            font-size: 1.5rem;
+        }
+    }
+
+    &__img {
+        width: 100%;
+        max-width: 100%;
+    }
+}

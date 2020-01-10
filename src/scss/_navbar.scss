@@ -1,0 +1,14 @@
+.navbar{
+    display: flex;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+
+    background-color: $color-primary;
+    background-image: linear-gradient(to right, rgba($color-primary, 1), rgba($color-primary-dark, 1));
+
+    @media only screen and (max-width: $bp-large) {
+        display: none;
+    }
+}

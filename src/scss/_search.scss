@@ -1,0 +1,90 @@
+.search {
+    display: flex;
+    align-items: stretch;
+
+    color: $color-tertiary-lighter;
+    font-size: 1.5rem;
+
+    border: 1px solid currentColor;
+    border-radius: 22px;
+    @include transition-medium()
+
+    &:hover{
+        border: 1px solid $color-primary;
+    }
+
+    &:hover &__input {
+        border-left: 1px solid $color-primary;
+        border-right: 1px solid $color-primary;
+    }
+
+    & > * {
+        padding: .8rem 1.3rem;
+        color: inherit;
+    }
+
+    &__show-all {
+        flex-basis: 3rem;
+        @include flex-centered()
+    }
+
+    &__input {
+        box-sizing: border-box;
+        font-size: inherit;
+        color: currentColor;
+        background-color: transparent;
+        outline: 0 transparent;
+        flex-grow: 1;
+        border: none;
+        border-left: 1px solid currentColor;
+        border-right: 1px solid currentColor;
+        @include transition-medium()
+    }
+
+    &__input::placeholder {
+        color: currentColor;
+    }
+
+    &__btn {
+        flex-basis: 3rem;
+        @include flex-centered()
+    }
+
+    &__btn--mobile {
+        display: none;
+        text-align: left;
+
+        @media only screen and (max-width: $bp-large) {
+            display: block;
+        }
+    }
+
+    &--mobile {
+        display: none;
+
+        @media only screen and (max-width: $bp-large) {
+            display: flex;
+        }
+    }
+
+    &__icon {
+        height: 2rem;
+        width: 2rem;
+        fill: $color-primary;
+
+        @media only screen and (max-width: $bp-large) {
+            height: 3rem;
+            width: 3rem;
+            fill: $color-primary;
+        }
+    }
+
+    &__btn--mobile &__icon{
+        fill: $color-secondary;
+        @include transition-medium()
+
+        &:hover {
+            fill: $color-primary;
+        }
+    }
+}

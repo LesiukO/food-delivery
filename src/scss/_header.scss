@@ -1,0 +1,9 @@
+.header {
+    color: $color-tertiary-light;
+    background-color: $color-tertiary-dark;
+    background-image: linear-gradient(to right, rgba($color-tertiary, 1), rgba($color-tertiary-dark, 1));
+
+    @media only screen and (max-width: $bp-large) {
+        padding-bottom: 1rem;
+    }
+}

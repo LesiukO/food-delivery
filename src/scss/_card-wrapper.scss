@@ -1,0 +1,14 @@
+.card-wrapper {
+    flex: 0 0 calc( 25% - 2rem );
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+
+    @media only screen and (max-width: $bp-medium) {
+        flex: 0 0 calc( 34% - 2rem );
+    }
+
+    @media only screen and (max-width: $bp-small) {
+        flex: 0 0 calc( 52% - 2rem );
+    }
+}
