@@ -3,10 +3,6 @@
     align-items: stretch;
     justify-content: flex-end;
 
-    @media only screen and (max-width: $bp-large) {
-        display: none;
-    }
-
     color: $color-tertiary-lighter;
     border: 1px solid currentColor;
     border-radius: 22px;
