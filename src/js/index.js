@@ -293,7 +293,7 @@ class router {
                                     </a>
                                 </li>
                                 <li class="breadcrumbs__item">
-                                    <a href="#" class="breadcrumbs__link">
+                                    <a href="#${this.routes[routeIndex].path}" class="breadcrumbs__link">
                                         ${this.routes[routeIndex].title}
                                     </a>
                                 </li>
