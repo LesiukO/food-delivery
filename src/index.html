@@ -18,7 +18,7 @@
                 <div class="wrapper">
                     <ul class="top-bar-menu">
                         <li class="top-bar-menu__item">
-                            <a href="#" class="top-bar-menu__link">
+                            <a href="#login" id="login" class="top-bar-menu__link">
                                 <svg class="top-bar-menu__icon">
                                     <use xlink:href="img/sprite.svg#icon-enter"></use>
                                 </svg>  
@@ -26,7 +26,7 @@
                             </a>
                         </li>
                         <li class="top-bar-menu__item">
-                            <a href="#" class="top-bar-menu__link">
+                            <a href="#sign-in" id="sign-in" class="top-bar-menu__link">
                                 <svg class="top-bar-menu__icon">
                                     <use xlink:href="img/sprite.svg#icon-add-user"></use>
                                 </svg> 
@@ -51,17 +51,17 @@
                         <use xlink:href="img/sprite.svg#icon-menu"></use>
                     </svg>
                 </div>
-                <div class="logo">
+                <a href="#" class="logo" id="logo">
                     LOGO
-                </div>
-                <div class="bar__cart cart">
+                </a>
+                <a href="#cart" class="bar__cart cart" id="cart">
                     <span class="cart__text">Товаров 0 (0.00$)</span>
                     <span class="cart__btn">
                         <svg class="cart__icon">
                             <use xlink:href="img/sprite.svg#icon-shopping-cart"></use>
                         </svg>
                     </span>
-                </div>
+                </a>
                 <div class="cart--mobile">
                     <svg class="cart__icon">
                         <use xlink:href="img/sprite.svg#icon-shopping-cart"></use>
@@ -78,7 +78,7 @@
                         </a>
                     </li>
                     <li class="main-menu__item">
-                        <a href="#" class="main-menu__link">
+                        <a href="#first-menu" class="main-menu__link">
                             <svg class="main-menu__icon">
                                 <use xlink:href="img/sprite.svg#icon-spoon-knife"></use>
                             </svg>
@@ -86,7 +86,7 @@
                         </a>
                     </li>
                     <li class="main-menu__item">
-                        <a href="#" class="main-menu__link">
+                        <a href="#second-menu" class="main-menu__link">
                             <svg class="main-menu__icon">
                                 <use xlink:href="img/sprite.svg#icon-man"></use>
                             </svg>
@@ -94,7 +94,7 @@
                         </a>
                     </li>
                     <li class="main-menu__item">
-                        <a href="#" class="main-menu__link">
+                        <a href="#delivery" class="main-menu__link">
                             <svg class="main-menu__icon">
                                 <use xlink:href="img/sprite.svg#icon-truck"></use>
                             </svg>
@@ -102,7 +102,7 @@
                         </a>
                     </li>
                     <li class="main-menu__item">
-                        <a href="#" class="main-menu__link">
+                        <a href="#coffe" class="main-menu__link">
                             <svg class="main-menu__icon">
                                 <use xlink:href="img/sprite.svg#icon-cup"></use>
                             </svg>
@@ -110,8 +110,8 @@
                         </a>
                     </li>
                     <li class="main-menu__item">
-                        <a href="#" class="main-menu__link">
-                            Статьи
+                        <a href="#contacts" class="main-menu__link">
+                            Контакты
                         </a>
                     </li>
                 </ul>
@@ -130,7 +130,130 @@
             </div>
         </header>
 
-        <div class="page">
+        <div class="content" id="content">
+                <div class="slider">
+                        <div class="slide">
+                            <div class="slide__text">
+                                <p class="slide__title">Дом обедов</p>
+                                <p class="slide__sub-title">Нам 15 лет</p>
+                            </div>
+                            <img class="slide__img" src="/img/slider-bg.jpg" alt="slide">
+                        </div>
+                    </div>
+            
+                    <div class="banners">
+                        <div class="banners__item banner">
+                            <img src="/img/banner-1.jpg" alt="" class="banner__img">
+                            <a href="#" class="banner__btn inline-btn">Перейти в меню &rarr;</a>
+                        </div>
+                        <div class="banners__item banner">
+                            <img src="/img/banner-2.jpg" alt="" class="banner__img">
+                            <a href="#" class="banner__btn inline-btn">Перейти в меню &rarr;</a>
+                        </div>
+                        <div class="banners__item banner">
+                            <img src="/img/banner-3.jpg" alt="" class="banner__img">
+                            <a href="#" class="banner__btn inline-btn">Перейти в меню &rarr;</a>
+                        </div>
+                        <div class="banners__item banner">
+                            <img src="/img/banner-4.jpg" alt="" class="banner__img">
+                            <a href="#" class="banner__btn inline-btn">Перейти в меню &rarr;</a>
+                        </div>
+                    </div>
+            
+                    <div class="top-products page-section">
+                        <div class="wrapper">
+                            <ul class="tabs">
+                                <li class="tabs__item tabs__item--active">Фуршетные наборы</li>
+                                <li class="tabs__item">Топ продаж</li>
+                                <li class="tabs__item">Лучшее</li>
+                            </ul>
+                            <div class="cards">
+                                <div class="card-wrapper">
+                                    <div class="card">
+                                        <div class="card__photo">
+                                            <img class="card__img" src="/img/product-1.jpg" alt="product 1">
+                                        </div>
+                                        <div class="card__info">
+                                            <hr class="card__line">
+                                            <h3 class="card__title">card title</h3>
+                                            <hr class="card__line card__line--small">
+                                            <p class="card__price">2640.00$</p>
+                                            <div class="card__to-buy">
+                                                <span class="card__minus card__to-buy-buttons">-</span>
+                                                <span class="card__count">1</span>
+                                                <span class="card__plus card__to-buy-buttons">+</span>
+                                                <a href="#" class="card__btn-buy">Купить</a>
+                                            </div>
+                                        <hr class="card__line">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-wrapper">
+                                    <div class="card">
+                                        <div class="card__photo">
+                                            <img class="card__img" src="/img/product-1.jpg" alt="product 1">
+                                        </div>
+                                        <div class="card__info">
+                                            <hr class="card__line">
+                                            <h3 class="card__title">card title</h3>
+                                            <hr class="card__line card__line--small">
+                                            <p class="card__price">2640.00$</p>
+                                            <div class="card__to-buy">
+                                                <span class="card__minus card__to-buy-buttons">-</span>
+                                                <span class="card__count">1</span>
+                                                <span class="card__plus card__to-buy-buttons">+</span>
+                                                <a href="#" class="card__btn-buy">Купить</a>
+                                            </div>
+                                        <hr class="card__line">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-wrapper">
+                                    <div class="card">
+                                        <div class="card__photo">
+                                            <img class="card__img" src="/img/product-1.jpg" alt="product 1">
+                                        </div>
+                                        <div class="card__info">
+                                            <hr class="card__line">
+                                            <h3 class="card__title">card title</h3>
+                                            <hr class="card__line card__line--small">
+                                            <p class="card__price">2640.00$</p>
+                                            <div class="card__to-buy">
+                                                <span class="card__minus card__to-buy-buttons">-</span>
+                                                <span class="card__count">1</span>
+                                                <span class="card__plus card__to-buy-buttons">+</span>
+                                                <a href="#" class="card__btn-buy">Купить</a>
+                                            </div>
+                                        <hr class="card__line">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-wrapper">
+                                    <div class="card">
+                                        <div class="card__photo">
+                                            <img class="card__img" src="/img/product-1.jpg" alt="product 1">
+                                        </div>
+                                        <div class="card__info">
+                                            <hr class="card__line">
+                                            <h3 class="card__title">card title</h3>
+                                            <hr class="card__line card__line--small">
+                                            <p class="card__price">2640.00$</p>
+                                            <div class="card__to-buy">
+                                                <span class="card__minus card__to-buy-buttons">-</span>
+                                                <span class="card__count">1</span>
+                                                <span class="card__plus card__to-buy-buttons">+</span>
+                                                <a href="#" class="card__btn-buy">Купить</a>
+                                            </div>
+                                        <hr class="card__line">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+
+        <!-- <div class="page">
             <div class="page__header">
                 <div class="wrapper">
                     <h2 class="page__title">Корзина покупок</h2>
@@ -157,9 +280,9 @@
             <div class="wrapper">
 
             </div>
-        </div>
-<!-- 
-        <div class="slider">
+        </div> -->
+
+        <!-- <div class="slider">
             <div class="slide">
                 <div class="slide__text">
                     <p class="slide__title">Дом обедов</p>
@@ -498,9 +621,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="modal modal--visible1">
+        <!-- <div class="modal modal--visible1">
             <div class="modal__inner">
                 <div class="modal__header">
                     <div class="wrapper">
