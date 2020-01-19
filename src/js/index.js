@@ -123,98 +123,6 @@ const mainPage = `
         </div>
 `
 
-// const cartPage = `
-//         <div class="page">
-//             <div class="page__header">
-//                 <div class="wrapper">
-//                     <h2 class="page__title">Корзина покупок</h2>
-
-//                     <div class="breadcrumbs">
-//                         <ul class="breadcrumbs__list">
-//                             <li class="breadcrumbs__item">
-//                                 <a href="#" class="breadcrumbs__link">
-//                                     <svg class="breadcrumbs__icon breadcrumbs__icon-home">
-//                                         <use xlink:href="img/sprite.svg#icon-home"></use>
-//                                     </svg>
-//                                 </a>
-//                             </li>
-//                             <li class="breadcrumbs__item">
-//                                 <a href="#" class="breadcrumbs__link">
-//                                     Корзина покупок
-//                                 </a>
-//                             </li>
-//                         </ul>
-//                     </div>
-
-//                 </div>
-//             </div>
-//             <div class="wrapper">
-
-//             </div>
-//         </div>
-// `
-
-// const loginPage = `
-//         <div class="page">
-//             <div class="page__header">
-//                 <div class="wrapper">
-//                     <h2 class="page__title">Войти</h2>
-
-//                     <div class="breadcrumbs">
-//                         <ul class="breadcrumbs__list">
-//                             <li class="breadcrumbs__item">
-//                                 <a href="#" class="breadcrumbs__link">
-//                                     <svg class="breadcrumbs__icon breadcrumbs__icon-home">
-//                                         <use xlink:href="img/sprite.svg#icon-home"></use>
-//                                     </svg>
-//                                 </a>
-//                             </li>
-//                             <li class="breadcrumbs__item">
-//                                 <a href="#" class="breadcrumbs__link">
-//                                     Войти
-//                                 </a>
-//                             </li>
-//                         </ul>
-//                     </div>
-
-//                 </div>
-//             </div>
-//             <div class="wrapper">
-
-//             </div>
-//         </div>
-// `
-
-// const signInPage = `
-//         <div class="page">
-//             <div class="page__header">
-//                 <div class="wrapper">
-//                     <h2 class="page__title">Регистрация</h2>
-
-//                     <div class="breadcrumbs">
-//                         <ul class="breadcrumbs__list">
-//                             <li class="breadcrumbs__item">
-//                                 <a href="#" class="breadcrumbs__link">
-//                                     <svg class="breadcrumbs__icon breadcrumbs__icon-home">
-//                                         <use xlink:href="img/sprite.svg#icon-home"></use>
-//                                     </svg>
-//                                 </a>
-//                             </li>
-//                             <li class="breadcrumbs__item">
-//                                 <a href="#" class="breadcrumbs__link">
-//                                     Регистрация
-//                                 </a>
-//                             </li>
-//                         </ul>
-//                     </div>
-
-//                 </div>
-//             </div>
-//             <div class="wrapper">
-
-//             </div>
-//         </div>
-// `
 
 const page404 = `
         <div class="page">
@@ -255,6 +163,7 @@ const elements = {
     login : document.getElementById('login'),
     signIn : document.getElementById('sign-in'),
     content : document.getElementById('content'),
+    cards : document.getElementById('cards'),
     barSearch: document.querySelector('.bar__search'),
     searchInput: document.querySelector('.search__input'),
 }
@@ -263,18 +172,9 @@ const elements = {
 // ***************************
 const state = {}
 
-
-// **********************************************************
 // *********************    API calls    ********************
-// **********************************************************
 
-
-
-
-
-
-
-// // ***************************************************************
+// // *********************************************
 // Search view
 
 const getInput = () => elements.searchInput.value
@@ -284,8 +184,41 @@ const clearInput = () => {
 }
 
 const clearContent = () => {
-
+    elements.cards.innerHTML = ''
 }
+
+const generatePage = (pageTitle, pagePath) => `
+    <div class="page">
+        <div class="page__header">
+            <div class="wrapper">
+                <h2 class="page__title">${pageTitle}</h2>
+
+                <div class="breadcrumbs">
+                    <ul class="breadcrumbs__list">
+                        <li class="breadcrumbs__item">
+                            <a href="#" class="breadcrumbs__link">
+                                <svg class="breadcrumbs__icon breadcrumbs__icon-home">
+                                    <use xlink:href="img/sprite.svg#icon-home"></use>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="breadcrumbs__item">
+                            <a href="#${pagePath}" class="breadcrumbs__link">
+                                ${pageTitle}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="cards">
+            
+            </div>
+        </div>
+    </div>
+`
 
 const renderRecipe = recipe => {
     const cards = document.querySelector('.cards ')
@@ -318,12 +251,8 @@ const renderResults = recipes => {
     recipes.forEach(renderRecipe)
 }
 // ***************************************************************
-
-
-
 // **************************
 // Search model 
-
 import axios from 'axios'
 class Search {
     constructor(query) {
@@ -341,16 +270,14 @@ class Search {
     }
 }
 
-
-
 // *************************************
 // Search controller
 const controlSearch = async (query) => {
     // 1) Define query
     // let query = 'pizza'
-    if (!query) {
-        const query = getInput()
-    }
+    // if (!query) {
+    //     const query = getInput()
+    // }
 
     if (query) {
 
@@ -359,7 +286,7 @@ const controlSearch = async (query) => {
 
         // 3) Prepare UI for results
         clearInput()
-
+        // clearContent()
 
         // 4) Search for recipes
         await state.search.getResults()
@@ -369,12 +296,6 @@ const controlSearch = async (query) => {
     }
 }
 // // **************************************
-
-
-// elements.barSearch.addEventListener('submit', e => {
-//     e.preventDefault()
-//     controlSearch()
-// })
 
 
 // *********************    ROUTER    ***********************
@@ -396,28 +317,36 @@ const routes = [
         title: 'Корзина'
     },
     {
-        path: 'first-menu',
-        title: 'Европейское меню'
+        path: 'pizza',
+        title: 'pizza'
     },
     {
-        path: 'second-menu',
-        title: 'Американское меню'
+        path: 'pasta',
+        title: 'pasta'
     },
     {
-        path: 'delivery',
-        title: 'Доставка обедов'
+        path: 'steak',
+        title: 'steak '
     },
     {
-        path: 'coffe',
-        title: 'Кофе брейк'
+        path: 'hamburger',
+        title: 'hamburger'
     },
     {
-        path: 'contacts',
-        title: 'Контакты'
+        path: 'seafood',
+        title: 'seafood'
     },
     {
-        path: 'search',
-        title: 'Поиск'
+        path: 'chicken',
+        title: 'chicken'
+    },
+    {
+        path: 'salad',
+        title: 'salad'
+    },
+    {
+        path: 'set-lunch',
+        title: 'set-lunch'
     },
 ]
 
@@ -428,9 +357,7 @@ class Router {
     }
 
     onRouteChange(e) {
-        this.updateContent()
-        const hashLocation = window.location.hash.substring(1)
-        const routeIndex = this.routes.findIndex(route => route.path === hashLocation)
+        this.updatePage()
 
         controlSearch(this.defineQuery())
     }
@@ -439,52 +366,28 @@ class Router {
         this.routes = routes
         const hashLocation = window.location.hash.substring(1)
         const routeIndex = this.routes.findIndex(route => route.path === hashLocation)
+        const currentPage = this.routes[routeIndex]
+        let pageTemplate
 
-        if (routeIndex === -1) {
-            return page404
+        switch (routeIndex) {
+            case -1:  
+                pageTemplate = page404
+                break
+        
+            case 0:
+                pageTemplate = mainPage
+                break
+        
+            default:
+                pageTemplate = generatePage(currentPage.title, currentPage.path)
+                break
         }
-
-        const currentPage = `
-            <div class="page">
-                <div class="page__header">
-                    <div class="wrapper">
-                        <h2 class="page__title">${this.routes[routeIndex].title}</h2>
-
-                        <div class="breadcrumbs">
-                            <ul class="breadcrumbs__list">
-                                <li class="breadcrumbs__item">
-                                    <a href="#" class="breadcrumbs__link">
-                                        <svg class="breadcrumbs__icon breadcrumbs__icon-home">
-                                            <use xlink:href="img/sprite.svg#icon-home"></use>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li class="breadcrumbs__item">
-                                    <a href="#${this.routes[routeIndex].path}" class="breadcrumbs__link">
-                                        ${this.routes[routeIndex].title}
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="wrapper">
-                    <div class="cards">
-                    
-                    </div>
-                </div>
-            </div>
-            `
-            if (routeIndex === 0) {
-                return mainPage
-            }
-            return currentPage
+        const page = generatePage(pageTemplate)
+        return page
     }
 
-    updateContent() {
-        const currentContent = this.getCurrentPage()
-        this.content.innerHTML = currentContent
+    updatePage() {
+        this.content.innerHTML = this.getCurrentPage()
     }
 
     defineQuery() {
@@ -492,19 +395,41 @@ class Router {
         const hashLocation = window.location.hash.substring(1)
         const routeIndex = this.routes.findIndex(route => route.path === hashLocation)
 
-        query = getInput()
-
         switch (this.routes[routeIndex].path) {
-            case 'first-menu':  
+            case 'pizza':  
                 query = 'pizza'    
                 break
         
-            case 'second-menu':
+            case 'pasta':
                 query = 'pasta'
                 break
-        
+
+            case 'steak':
+                query = 'steak'
+                break
+
+            case 'hamburger':
+                query = 'hamburger'
+                break
+
+            case 'seafood':
+                query = 'seafood'
+                break
+
+            case 'chicken':
+                query = 'chicken'
+                break
+
+            case 'salad':
+                query = 'salad'
+                break
+
+            case 'set-lunch':
+                query = 'set-lunch'
+                break
+
             default:
-                query = getInput()
+                query = 'salad'
                 break
         }
         return query
@@ -513,4 +438,38 @@ class Router {
 }
 
 new Router()
+
+
+// ********************************************************************************************
+// LIST MODEL
+import uniqid from 'uniqid'
+
+class List {
+    constructor () {
+        this.items = []
+    }
+
+    addItem(count, dish) {
+        const item = {
+            id: uniqid(),
+            count,
+            dish
+        }
+        this.items.push(items)
+    }
+
+    deleteItem(id) {
+        const index = this.items.findIndex(el => el.id === id)
+        this.items.splice(index, 1)
+    }
+
+    updateCount(id, newCount) {
+        this.items.find(el => el.id === id).count = newCount
+    }
+}
+
+
+
+
+
 

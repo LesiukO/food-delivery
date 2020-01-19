@@ -1,0 +1,50 @@
+.shoping-list {
+    font-size: 1.6rem;
+    color: $color-tertiary-darker;
+    border: 1px solid $color-tertiary-light;
+    margin: 0 auto;
+    margin-top: 1rem;
+
+    &__headline {
+        text-transform: uppercase;
+        text-align: center;
+        border: 1px solid $color-tertiary-light;
+        background-color: $color-tertiary-light;
+        line-height: 2;
+    }
+
+    &__item {
+        text-align: center;
+        border: 1px solid red;
+    }
+    
+    &__item-photo {
+        padding: 2.5rem;
+        width: 20%;
+        border-bottom: 1px solid $color-tertiary-light;
+    }
+
+    &__item-img {
+        max-width: 80%;
+    }
+
+    &__item-name {
+        width: 20%;
+        border-bottom: 1px solid $color-tertiary-light;
+    }
+
+    &__item-count {
+        width: 30%;
+        border-bottom: 1px solid $color-tertiary-light;
+    }
+
+    &__item-price {
+        width: 10%;
+        border-bottom: 1px solid $color-tertiary-light;
+    }
+
+    &__item-sum {
+        width: 10%;
+        border-bottom: 1px solid $color-tertiary-light;
+    }
+}
