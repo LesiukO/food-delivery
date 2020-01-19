@@ -1,11 +1,5 @@
 import '../scss/main.scss'
 
-const cart = document.getElementById('cart')
-const logo = document.getElementById('logo')
-const login = document.getElementById('login')
-const signIn = document.getElementById('sign-in')
-const content = document.getElementById('content')
-
 const mainPage = `
         <div class="slider">
             <div class="slide">
@@ -222,6 +216,168 @@ const mainPage = `
 //         </div>
 // `
 
+const page404 = `
+        <div class="page">
+            <div class="page__header">
+                <div class="wrapper">
+                    <h2 class="page__title">Страница не найдена</h2>
+
+                    <div class="breadcrumbs">
+                        <ul class="breadcrumbs__list">
+                            <li class="breadcrumbs__item">
+                                <a href="#" class="breadcrumbs__link">
+                                    <svg class="breadcrumbs__icon breadcrumbs__icon-home">
+                                        <use xlink:href="img/sprite.svg#icon-home"></use>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="breadcrumbs__item">
+                                <a href="#" class="breadcrumbs__link">
+                                    
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="cards">
+                
+                </div>
+            </div>
+        </div>
+`
+
+const elements = {
+    cart : document.getElementById('cart'),
+    logo : document.getElementById('logo'),
+    login : document.getElementById('login'),
+    signIn : document.getElementById('sign-in'),
+    content : document.getElementById('content'),
+    barSearch: document.querySelector('.bar__search'),
+    searchInput: document.querySelector('.search__input'),
+}
+
+// Global state fo the app
+// ***************************
+const state = {}
+
+
+// **********************************************************
+// *********************    API calls    ********************
+// **********************************************************
+
+
+
+
+
+
+
+// // ***************************************************************
+// Search view
+
+const getInput = () => elements.searchInput.value
+
+const clearInput = () => {
+    elements.searchInput.value = ''
+}
+
+const clearContent = () => {
+
+}
+
+const renderRecipe = recipe => {
+    const cards = document.querySelector('.cards ')
+    const markup = `
+                                <div class="card-wrapper">
+                                    <div href="#${recipe.recipe_id}" class="card">
+                                        <div class="card__photo">
+                                            <img class="card__img" src="${recipe.image_url}" alt="${recipe.image_url}">
+                                        </div>
+                                        <div class="card__info">
+                                            <hr class="card__line">
+                                            <h3 class="card__title">${recipe.title}</h3>
+                                            <hr class="card__line card__line--small">
+                                            <p class="card__price">2640.00$</p>
+                                            <div class="card__to-buy">
+                                                <span class="card__minus card__to-buy-buttons">-</span>
+                                                <span class="card__count">1</span>
+                                                <span class="card__plus card__to-buy-buttons">+</span>
+                                                <a href="#" class="card__btn-buy">Купить</a>
+                                            </div>
+                                        <hr class="card__line">
+                                        </div>
+                                    </div>
+                                </div>
+    `
+    cards.insertAdjacentHTML('beforeend', markup)
+}
+
+const renderResults = recipes => {
+    recipes.forEach(renderRecipe)
+}
+// ***************************************************************
+
+
+
+// **************************
+// Search model 
+
+import axios from 'axios'
+class Search {
+    constructor(query) {
+        this.query = query
+    }
+
+    async getResults(query) {
+        try {
+            const res = await axios(`https://forkify-api.herokuapp.com/api/search?&q=${this.query}`);
+            this.result = res.data.recipes
+        }
+        catch (error) {
+            alert(error)
+        }
+    }
+}
+
+
+
+// *************************************
+// Search controller
+const controlSearch = async (query) => {
+    // 1) Define query
+    // let query = 'pizza'
+    if (!query) {
+        const query = getInput()
+    }
+
+    if (query) {
+
+        // 2) New search object and add to state
+        state.search = new Search(query)
+
+        // 3) Prepare UI for results
+        clearInput()
+
+
+        // 4) Search for recipes
+        await state.search.getResults()
+
+        // 5) Render results on UI
+        renderResults(state.search.result)
+    }
+}
+// // **************************************
+
+
+// elements.barSearch.addEventListener('submit', e => {
+//     e.preventDefault()
+//     controlSearch()
+// })
+
+
+// *********************    ROUTER    ***********************
 const routes = [
     {
         path: '',
@@ -259,23 +415,34 @@ const routes = [
         path: 'contacts',
         title: 'Контакты'
     },
+    {
+        path: 'search',
+        title: 'Поиск'
+    },
 ]
 
-
-class router {
+class Router {
     constructor() {
+        this.content = elements.content
         window.addEventListener("hashchange", e => this.onRouteChange(e))
-        this.content = document.getElementById('content')
     }
 
     onRouteChange(e) {
         this.updateContent()
+        const hashLocation = window.location.hash.substring(1)
+        const routeIndex = this.routes.findIndex(route => route.path === hashLocation)
+
+        controlSearch(this.defineQuery())
     }
 
     getCurrentPage () {
         this.routes = routes
         const hashLocation = window.location.hash.substring(1)
         const routeIndex = this.routes.findIndex(route => route.path === hashLocation)
+
+        if (routeIndex === -1) {
+            return page404
+        }
 
         const currentPage = `
             <div class="page">
@@ -303,7 +470,9 @@ class router {
                     </div>
                 </div>
                 <div class="wrapper">
-
+                    <div class="cards">
+                    
+                    </div>
                 </div>
             </div>
             `
@@ -317,6 +486,31 @@ class router {
         const currentContent = this.getCurrentPage()
         this.content.innerHTML = currentContent
     }
+
+    defineQuery() {
+        let query
+        const hashLocation = window.location.hash.substring(1)
+        const routeIndex = this.routes.findIndex(route => route.path === hashLocation)
+
+        query = getInput()
+
+        switch (this.routes[routeIndex].path) {
+            case 'first-menu':  
+                query = 'pizza'    
+                break
+        
+            case 'second-menu':
+                query = 'pasta'
+                break
+        
+            default:
+                query = getInput()
+                break
+        }
+        return query
+
+    }
 }
 
-new router()
+new Router()
+

@@ -47,6 +47,9 @@
 
     &__btn {
         flex-basis: 3rem;
+        background-color: transparent;
+        border: none;
+        outline: 0;
         @include flex-centered()
     }
 
