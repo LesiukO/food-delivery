@@ -480,8 +480,6 @@ import '../scss/main.scss'
 
 import Search from './models/Search'
 import List from './models/List'
-import Dishes from './models/Dishes'
-import Dish from './models/Dish'
 
 import * as searchView from './views/searchView'
 import * as pageView from './views/pageView'
@@ -520,74 +518,70 @@ const controlSearch = async (query) => {
 }
 
 const listController = (card) => {
-    if (!state.list) state.list = new List()
-    state.list.addItem(card)
+    // if (!state.list) state.list = new List()
+    // state.list.addItem(card)
 }
+
+
 
 document.addEventListener('click', e => {
     if (e.target.matches('.card__to-buy, .card__to-buy *')) {
-        const cardId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id')
+        const cardId = cardView.getId(e)
+        const card = cardView.getCardById(cardId)
+
         if (e.target.matches('.card__plus, .card__plus *')) {
             cardView.increaseCount(cardId)
-        } else if (e.target.matches('.card__minus, .card__minus *')) {
+        } 
+        
+        else if (e.target.matches('.card__minus, .card__minus *')) {
             cardView.decreaseCount(cardId)
-        } else if (e.target.matches('.card__btn-buy, .card__btn-buy *')) {
+        } 
+        
+        else if (e.target.matches('.card__btn-buy, .card__btn-buy *')) {
+            if (!state.list) state.list = new List()
             e.preventDefault()
-            if (state.list) {
-                if (state.list.items.findIndex( item => item.oldId === cardId) === -1) {
-                    cardView.addToCart(cardId)
-                    listController(cardView.addToCart(cardId))
-                } else {
-                    const repeatItem = state.list.items.find( item => item.oldId === cardId)
-                    state.list.updateCount(repeatItem.id, repeatItem.count + cardView.addToCart(cardId).count)
-                }
+
+            if (state.list.items.findIndex( item => item.oldId === cardId) === -1) {
+                state.list.addItem(card)
             } else {
-                cardView.addToCart(cardId)
-                listController(cardView.addToCart(cardId))
+                const repeatItem = state.list.items.find( item => item.oldId === cardId)
+                state.list.updateCount(repeatItem.id, repeatItem.count + card.count)
             }
+            state.list.calcTotalSum()
+            listView.showTotalSum(state.list.totalSum)
         }
+
     }
 })
 
 const handleShopingEvents = () => {
     if (document.querySelector('.shoping-list')) {
         const shoping = document.querySelector('.shoping-list')
-        
+
+        // listView.renderItems(state.list.items)
+        // listView.showTotalSum(state.list.totalSum)
+
         shoping.addEventListener('click', e => {
-            if (e.target.matches('.card__btn-delete, .card__btn-delete *')) {
+
+            if (e.target.matches('.shoping-list__item-count-btn, .shoping-list__item-count-btn *')) {
+                const item = e.target.parentElement.parentElement.parentElement  
+                const itemId = item.getAttribute('data-itemid')  
                 e.preventDefault()
-                const item = e.target.parentElement.parentElement.parentElement
-                const itemPrice = parseFloat(item.querySelector('.shoping-list__item-price').textContent)
-                let itemSum = item.querySelector('.shoping-list__item-sum')
-                const itemId = item.getAttribute('data-itemid')
-                state.list.deleteItem(itemId)
-                listView.deleteItem(itemId)
-                listView.calcTotalSum()
-            } else if (e.target.matches('.shoping-list__item-plus, .shoping-list__item-plus *')) {
-                const item = e.target.parentElement.parentElement.parentElement
-                const itemPrice = parseFloat(item.querySelector('.shoping-list__item-price').textContent)
-                let itemSum = item.querySelector('.shoping-list__item-sum')
-                const itemId = item.getAttribute('data-itemid')
-                let itemCount = parseInt(item.querySelector('.shoping-list__item-count').textContent)
-                itemCount++
-                item.querySelector('.shoping-list__item-count').textContent = itemCount
-                state.list.updateCount(itemId, itemCount)
-                itemSum.textContent = listView.updateSum(itemCount, itemPrice)
-                listView.calcTotalSum()
-            } else if (e.target.matches('.shoping-list__item-minus, .shoping-list__item-minus *')) {
-                const item = e.target.parentElement.parentElement.parentElement
-                const itemPrice = parseFloat(item.querySelector('.shoping-list__item-price').textContent)
-                let itemSum = item.querySelector('.shoping-list__item-sum')
-                const itemId = item.getAttribute('data-itemid')
-                let itemCount = parseInt(item.querySelector('.shoping-list__item-count').textContent)
-                if (itemCount > 1) {
-                    itemCount--
-                    item.querySelector('.shoping-list__item-count').textContent = itemCount
-                    state.list.updateCount(itemId, itemCount)
-                    itemSum.textContent = listView.updateSum(itemCount, itemPrice)
-                    listView.calcTotalSum()
+
+                if (e.target.matches('.card__btn-delete, .card__btn-delete *')) {
+                    state.list.deleteItem(itemId)
+                    listView.deleteItem(itemId)
+                } else if (e.target.matches('.shoping-list__item-plus, .shoping-list__item-plus *')) {
+                    state.list.increaseCount(itemId)
+                    listView.increaseCount(itemId)
+                } else if (e.target.matches('.shoping-list__item-minus, .shoping-list__item-minus *')) {
+                    state.list.decreaseCount(itemId)
+                    listView.decreaseCount(itemId)
                 }
+                state.list.calcTotalSum()
+                listView.showTotalSum(state.list.totalSum)
             }
+
         })
     }
 }
@@ -709,9 +703,11 @@ class Router {
         if (currentRoute.dish) {
             controlSearch(currentRoute.path)
         } else if (currentRoute.path === 'cart') {
-            listView.renderItems(state.list.items)
-            listView.calcTotalSum(state.list.items)
             handleShopingEvents()
+            if (state.list) {
+                listView.renderItems(state.list.items)
+                listView.showTotalSum(state.list.totalSum)
+            }
         }
     }
 }

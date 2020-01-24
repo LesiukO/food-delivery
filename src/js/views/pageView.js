@@ -178,5 +178,6 @@ export const cart = `
             <th>Всего</th>
         </tr>
     </table>
-    <div class="shoping-list__total">Total sum: 1000 $</div>
+    <div class="shoping-list__total">Total sum: 0 $</div>
 `
+

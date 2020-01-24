@@ -24,30 +24,41 @@ export const renderItem = item => {
 }
 
 export const renderItems = items => {
-    items.forEach( item => renderItem(item) )
+    items.forEach( item => renderItem(item))
 }
 
-export const calcTotalSum = () => {
-    const items = document.querySelectorAll('.shoping-list__item')
-    let totalSum = 0
-    items.forEach( item => {
-        let sum = parseFloat(item.querySelector('.shoping-list__item-sum').textContent)
-        totalSum += sum
-    })
-    const total = document.querySelector('.shoping-list__total')
-    const totalHeader = document.querySelector('.cart__text')
-    total.textContent = `Total: ${totalSum}$`
-    totalHeader.textContent = `(total sum: ${totalSum}$)`
+export const showTotalSum = (sum) => {
+    document.querySelector('.cart__text').textContent = `(total sum: ${sum}$)`
+    if (document.querySelector('.shoping-list__total')) {
+        document.querySelector('.shoping-list__total').textContent = `(total sum: ${sum}$)`
+    }
 }
 
-export const calcSum = (count, price) => {
-    return count * price
-}
-export const updateSum = (count, price) => {
+const calcSum = (count, price) => {
     return count * price
 }
 
 export const deleteItem = id => {
     const item = document.querySelector(`[data-itemid="${id}"]`)
     item.parentElement.removeChild(item)
+}
+
+export const increaseCount = id => {
+    const item = document.querySelector(`[data-itemid="${id}"]`)
+    let count = parseInt(item.querySelector('.shoping-list__item-count').textContent)
+    const price = parseFloat(item.querySelector('.shoping-list__item-price').textContent)
+    count++
+    item.querySelector('.shoping-list__item-count').textContent = count
+    item.querySelector('.shoping-list__item-sum').textContent = calcSum(price, count)
+}
+
+export const decreaseCount = id => {
+    const item = document.querySelector(`[data-itemid="${id}"]`)
+    let count = parseInt(item.querySelector('.shoping-list__item-count').textContent)
+    const price = parseFloat(item.querySelector('.shoping-list__item-price').textContent)
+    if (count > 1) {
+        count--
+        item.querySelector('.shoping-list__item-count').textContent = count
+    }
+    item.querySelector('.shoping-list__item-sum').textContent = calcSum(price, count)
 }

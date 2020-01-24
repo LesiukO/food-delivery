@@ -18,7 +18,7 @@ export const decreaseCount = id => {
     }
 }
 
-export const addToCart = id => {
+export const getCardById = id => {
     const card = document.querySelector(`[data-id="${id}"]`)
     const cardCount = card.querySelector('.card__count')
     let count = parseInt(cardCount.textContent)
@@ -34,3 +34,5 @@ export const addToCart = id => {
         price,
     }
 }
+
+export const getId = e => e.target.parentElement.parentElement.parentElement.getAttribute('data-id')

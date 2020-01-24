@@ -3,6 +3,7 @@ import uniqid from 'uniqid'
 export default class List {
     constructor () {
         this.items = []
+        this.totalSum = 0
     }
 
     addItem(card) {
@@ -18,6 +19,13 @@ export default class List {
         return item
     }
 
+    calcTotalSum() {
+        this.totalSum = 0
+        this.items.forEach(item => {
+            this.totalSum += item.price * item.count
+        })
+    }
+
     deleteItem(id) {
         const index = this.items.findIndex(el => el.id === id)
         this.items.splice(index, 1)
@@ -25,5 +33,15 @@ export default class List {
 
     updateCount(id, newCount) {
         this.items.find(el => el.id === id).count = newCount
+    }
+
+    increaseCount(id) {
+        this.items.find(el => el.id === id).count++
+    }
+
+    decreaseCount(id) {
+        if (this.items.find(el => el.id === id).count > 1) {
+            this.items.find(el => el.id === id).count--
+        }
     }
 }
