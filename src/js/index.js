@@ -485,6 +485,8 @@ import * as searchView from './views/searchView'
 import * as pageView from './views/pageView'
 import * as cardView from './views/cardView'
 import * as listView from './views/listView'
+import * as modalView from './views/modalView'
+import * as messageView from './views/messageView'
 
 import { elements } from './views/base'
 
@@ -549,6 +551,7 @@ document.addEventListener('click', e => {
             }
             state.list.calcTotalSum()
             listView.showTotalSum(state.list.totalSum)
+            messageView.showMessage(e)
         }
 
     }
@@ -585,6 +588,16 @@ const handleShopingEvents = () => {
         })
     }
 }
+
+document.addEventListener('click', e => {
+    if (e.target.matches('.card__img, .card__img *')) {
+        modalView.showCardPopup(e)
+    }
+
+    if (e.target.matches('.modal__close, .modal__close *') || e.target.matches('.modal')) {
+        modalView.hideCardPopup(e)
+    }
+})
 
 
 

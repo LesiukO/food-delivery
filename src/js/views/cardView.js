@@ -24,7 +24,7 @@ export const getCardById = id => {
     let count = parseInt(cardCount.textContent)
     const img = card.querySelector('.card__img').getAttribute('src')
     const title = card.querySelector('.card__title').textContent
-    const price = parseInt(card.querySelector('.card__price').textContent)
+    const price = parseFloat(card.querySelector('.card__price').textContent)
 
     return {
         id,
