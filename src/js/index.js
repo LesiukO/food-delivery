@@ -496,11 +496,7 @@ const state = {}
 
 
 // Search controller
-const controlSearch = async (query) => {
-    // 1. Get query from view
-    if (!query) {
-        const query = searchView.getInput()
-    }
+const controlSearch = async (query = searchView.getInput()) => {
 
     if (query) {
 
@@ -515,6 +511,7 @@ const controlSearch = async (query) => {
         await state.search.getResults()
 
         // 5) Render results on UI
+    
         searchView.renderResults(state.search.result)
     }
 }
@@ -523,6 +520,11 @@ const listController = (card) => {
     // if (!state.list) state.list = new List()
     // state.list.addItem(card)
 }
+
+elements.barSearch.addEventListener('submit', e => {
+    e.preventDefault()
+    window.location = `#${searchView.getInput()}`
+})
 
 
 
@@ -601,6 +603,30 @@ document.addEventListener('click', e => {
 
 
 
+//*******TRY */
+// const modal = new Modal()
+    // state.modal = new Modal(messageView.getDataFromCard(e))
+    // messageView.showMessage()
+
+
+
+
+
+
+    // messageView.renderModal(function () {
+    //     setTimeout(function () {
+    //         messageView.openModal(function () {
+    //             setTimeout(function () {
+    //                 messageView.closeModal(function () {
+    //                     setTimeout(function () {
+    //                         messageView.deleteModal()
+    //                     }, 300)
+    //                 })
+    //             }, 3000)
+    //         })
+    //     }, 300)
+    // })
+
 const routes = [
     {
         path: '',
@@ -669,6 +695,12 @@ const routes = [
         dish: true
     },
     {
+        path: 'search',
+        title: 'search',
+        content: pageView.cards,
+        dish: false
+    },
+    {
         path: 'set-lunch',
         title: 'set-lunch',
         content: pageView.cards,
@@ -699,10 +731,14 @@ class Router {
         const currentRoute = this.routes[routeIndex]
         let currentPage
 
-        if (this.routes[routeIndex].path === '') {
-            currentPage = pageView.mainPage
+        if (this.routes[routeIndex]) {
+            if (this.routes[routeIndex].path === '') {
+                currentPage = pageView.mainPage
+            } else {
+                currentPage = pageView.renderTemplatePage(currentRoute.title, currentRoute.path, currentRoute.content)
+            }
         } else {
-            currentPage = pageView.renderTemplatePage(currentRoute.title, currentRoute.path, currentRoute.content)
+            currentPage = pageView.renderTemplatePage('search', 'search', pageView.cards)
         }
 
         return currentPage
@@ -713,15 +749,21 @@ class Router {
         const routeIndex = this.routes.findIndex(route => route.path === hashLocation)
         const currentRoute = this.routes[routeIndex]
 
-        if (currentRoute.dish) {
+        // if (routeIndex !== -1) {
+
+        // }
+        if (currentRoute && currentRoute.dish) {
             controlSearch(currentRoute.path)
-        } else if (currentRoute.path === 'cart') {
+        } else if (currentRoute && currentRoute.path === 'cart') {
             handleShopingEvents()
             if (state.list) {
                 listView.renderItems(state.list.items)
                 listView.showTotalSum(state.list.totalSum)
             }
+        } else {
+            controlSearch()
         }
+
     }
 }
 

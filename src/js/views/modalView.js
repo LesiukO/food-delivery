@@ -46,6 +46,19 @@ export const hideCardPopup = e => {
 }
 
 
+// export const createModal = (modal, e) => {
+//     const card = e.target.closest('.card')
+//     const cardId = card.getAttribute('data-id')
+//     const cardTitle = card.querySelector('.card__title').textContent
+//     const cardImg = card.querySelector('.card__img').getAttribute('src')
+//     const cardCount = parseFloat(card.querySelector('.card__count').textContent)
+//     const cardPrice = parseFloat(card.querySelector('.card__price').textContent) * cardCount
+
+//     modal.classList.add('modal')
+//     document.querySelector('body').appendChild(modal)
+//     modal.innerHTML = modalCard(cardImg, cardTitle, cardPrice, cardCount)
+// }
+
 export const createModal = (modal, e) => {
     const card = e.target.closest('.card')
     const cardId = card.getAttribute('data-id')
@@ -53,6 +66,7 @@ export const createModal = (modal, e) => {
     const cardImg = card.querySelector('.card__img').getAttribute('src')
     const cardCount = parseFloat(card.querySelector('.card__count').textContent)
     const cardPrice = parseFloat(card.querySelector('.card__price').textContent) * cardCount
+
     modal.classList.add('modal')
     document.querySelector('body').appendChild(modal)
     modal.innerHTML = modalCard(cardImg, cardTitle, cardPrice, cardCount)

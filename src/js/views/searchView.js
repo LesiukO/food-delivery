@@ -7,7 +7,7 @@ export const clearInput = () => {
 }
 
 export const clearContent = () => {
-    const cards = document.getElementById('cards')
+    const cards = document.querySelector('.cards')
     if (cards) {
         cards.innerHTML = ''
     }
