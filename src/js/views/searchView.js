@@ -15,7 +15,7 @@ export const clearContent = () => {
 
 const randomPrice = () => {
     const Prices = [
-        150.00, 200.50, 220.10, 120.25, 340.40, 230.30, 430.21, 230.10, 120.40, 340.50, 432.45, 123.45, 987.45, 450.45, 453.21, 
+        150.00, 200.50, 220.10, 120.20, 340.40, 230.30, 430.20, 230.10, 120.40, 340.50, 432.40, 123.40, 987.40, 450.40, 453.20, 
         213.50, 234.50, 345.50, 120.50, 345.50, 324.00, 123.00, 345.00, 435.00, 123.00, 453.00, 234.00, 546.00, 345.70, 234.10,
     ]
 
@@ -39,7 +39,7 @@ export const renderRecipe = recipe => {
                 </div>
                 <div class="card__info">
                     <hr class="card__line">
-                    <h3 class="card__title">${recipe.title}</h3>
+                    <div class="card__title">${recipe.title}</div>
                     <hr class="card__line card__line--small">
                     <p class="card__price">${randomPrice()}$</p>
                     <div class="card__to-buy">
@@ -56,6 +56,58 @@ export const renderRecipe = recipe => {
     cards.insertAdjacentHTML('beforeend', markup)
 }
 
-export const renderResults = recipes => {
-    recipes.forEach(renderRecipe)
+
+
+const createButton = (page, type) => {
+    let button
+    if (type === 'prev') {
+        button = `
+        <button class="btn-inline page__pagination-btn results__btn--${type}" data-goto=${page - 1}>
+            <svg class="search__icon">
+                <use href="img/icons.svg#icon-triangle-left"></use>
+            </svg>
+            <span>Page ${page - 1}</span>
+        </button>
+    `
+    } else {
+        button = `
+        <button class="btn-inline page__pagination-btn results__btn--${type}" data-goto=${page + 1}>
+            <span>Page ${page + 1}</span>
+            <svg class="search__icon">
+            <use href="img/icons.svg#icon-triangle-right"></use>
+            </svg>
+        </button>
+    `
+    }
+    return button
+}
+
+const renderButtons = (page, numResults, resPerPage) => {
+    const pages = Math.ceil(numResults / resPerPage)
+    const searchResPages = document.querySelector('.page__pagination')
+    searchResPages.innerHTML = ''
+
+    let button
+    if (page === 1 && pages > 1) {
+        button = createButton(page, 'next')
+
+    } else if (page < pages) {
+        button = `
+            ${createButton(page, 'prev')}
+            ${createButton(page, 'next')}
+        `
+    } else if (page === pages && pages > 1) {
+        button = createButton(page, 'prev')
+    }
+
+    searchResPages.insertAdjacentHTML('afterbegin', button)
+}
+
+export const renderResults = (recipes, page = 1, resPerPage = 8 ) => {
+    const start = (page - 1) * resPerPage 
+    const end = page * resPerPage 
+
+    recipes.slice(start, end).forEach(renderRecipe)
+
+    renderButtons(page, recipes.length, resPerPage)
 }

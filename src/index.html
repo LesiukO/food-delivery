@@ -40,7 +40,7 @@
 
             <div class="bar page-section wrapper">
                 <form class="bar__search search">
-                    <span class="search__show-all">Все</span>
+                    <span class="search__show-all"></span>
                     <input type="text" placeholder="Искать" class="search__input">
                     <button class="search__btn">
                         <svg class="search__icon">
@@ -53,8 +53,8 @@
                         <use xlink:href="img/sprite.svg#icon-menu"></use>
                     </svg>
                 </div>
-                <a href="#" class="logo" id="logo">
-                    LOGO
+                <a href="#" class="logo bar__logo" id="logo">
+                    <img src="img/logo.png" class="logo__img" alt="logo">
                 </a>
                 <a href="#cart" class="bar__cart cart" id="cart">
                     <span class="cart__text">(total sum: 0.00$)</span>
@@ -64,11 +64,11 @@
                         </svg>
                     </span>
                 </a>
-                <div class="cart--mobile">
+                <a href="#cart" class="cart--mobile">
                     <svg class="cart__icon">
                         <use xlink:href="img/sprite.svg#icon-shopping-cart"></use>
                     </svg>
-                </div>
+                </a>
             </div>
 
             <nav class="navbar">
@@ -136,28 +136,19 @@
                             salad
                         </a>
                     </li>
-                    <li class="main-menu__item">
-                        <a href="#set-lunch" class="main-menu__link">
-                            <svg class="main-menu__icon">
-                                <use xlink:href="img/sprite.svg#icon-cup"></use>
-                            </svg>
-                            set lunch
-                        </a>
-                    </li>
-                    
                 </ul>
             </nav>
 
             <div class="wrapper">
-                <div class="search search--mobile">
-                    <span class="search__show-all">Все</span>
+                <form class="search search--mobile">
+                    <span class="search__show-all"></span>
                     <input type="text" placeholder="Искать" class="search__input">
-                    <span class="search__btn">
+                    <button class="search__btn">
                         <svg class="search__icon">
                             <use xlink:href="img/sprite.svg#icon-search"></use>
                         </svg>
-                    </span>
-                </div>
+                    </button>
+                </form>
             </div>
         </header>
 
@@ -166,40 +157,39 @@
                 <div class="slider">
                         <div class="slide">
                             <div class="slide__text">
-                                <p class="slide__title">Дом обедов</p>
-                                <p class="slide__sub-title">Нам 15 лет</p>
+                                <p class="slide__title">Food delivery</p>
                             </div>
                             <img class="slide__img" src="/img/slider-bg.jpg" alt="slide">
                         </div>
                     </div>
             
-                    <div class="banners">
+                    <!-- <div class="banners">
                         <div class="banners__item banner">
                             <img src="/img/banner-1.jpg" alt="" class="banner__img">
-                            <a href="#" class="banner__btn inline-btn">Перейти в меню &rarr;</a>
+                            <a href="#pizza" class="banner__btn inline-btn">Перейти в меню &rarr;</a>
                         </div>
                         <div class="banners__item banner">
                             <img src="/img/banner-2.jpg" alt="" class="banner__img">
-                            <a href="#" class="banner__btn inline-btn">Перейти в меню &rarr;</a>
+                            <a href="#pasta" class="banner__btn inline-btn">Перейти в меню &rarr;</a>
                         </div>
                         <div class="banners__item banner">
                             <img src="/img/banner-3.jpg" alt="" class="banner__img">
-                            <a href="#" class="banner__btn inline-btn">Перейти в меню &rarr;</a>
+                            <a href="#steak" class="banner__btn inline-btn">Перейти в меню &rarr;</a>
                         </div>
                         <div class="banners__item banner">
                             <img src="/img/banner-4.jpg" alt="" class="banner__img">
-                            <a href="#" class="banner__btn inline-btn">Перейти в меню &rarr;</a>
+                            <a href="#hamburger" class="banner__btn inline-btn">Перейти в меню &rarr;</a>
                         </div>
                     </div>
             
                     <div class="top-products page-section">
                         <div class="wrapper">
                             <ul class="tabs">
-                                <li class="tabs__item tabs__item--active">Фуршетные наборы</li>
-                                <li class="tabs__item">Топ продаж</li>
-                                <li class="tabs__item">Лучшее</li>
+                                <li data-tab-num="0" class="tabs__item tabs__item--active">Новинки</li>
+                                <li data-tab-num="1" class="tabs__item">Топ продаж</li>
+                                <li data-tab-num="2" class="tabs__item">Лучшее</li>
                             </ul>
-                            <div class="cards">
+                            <div class="cards tabs__content">
                                 <div class="card-wrapper">
                                     <div class="card">
                                         <div class="card__photo">
@@ -207,15 +197,21 @@
                                         </div>
                                         <div class="card__info">
                                             <hr class="card__line">
-                                            <h3 class="card__title">card title</h3>
+                                            <a href="#pizza" class="card__title">Deep Dish Fruit Pizza</a>
                                             <hr class="card__line card__line--small">
-                                            <p class="card__price">2640.00$</p>
-                                            <div class="card__to-buy">
-                                                <span class="card__minus card__to-buy-buttons">-</span>
-                                                <span class="card__count">1</span>
-                                                <span class="card__plus card__to-buy-buttons">+</span>
-                                                <a href="#" class="card__btn-buy">Купить</a>
-                                            </div>
+                                        <hr class="card__line">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-wrapper">
+                                    <div data-id="46956" class="card">
+                                        <div class="card__photo">
+                                            <img class="card__img" src="/img/product-2.jpg" alt="product 1">
+                                        </div>
+                                        <div class="card__info">
+                                            <hr class="card__line">
+                                            <a href="#pasta" class="card__title">Lasagna Soup</a href="pasta">
+                                            <hr class="card__line card__line--small">
                                         <hr class="card__line">
                                         </div>
                                     </div>
@@ -223,19 +219,12 @@
                                 <div class="card-wrapper">
                                     <div class="card">
                                         <div class="card__photo">
-                                            <img class="card__img" src="/img/product-1.jpg" alt="product 1">
+                                            <img class="card__img" src="/img/product-3.jpg" alt="product 1">
                                         </div>
                                         <div class="card__info">
                                             <hr class="card__line">
-                                            <h3 class="card__title">card title</h3>
+                                            <a href="#steak" class="card__title">Beef with Snow Peas</a href="steak">
                                             <hr class="card__line card__line--small">
-                                            <p class="card__price">2640.00$</p>
-                                            <div class="card__to-buy">
-                                                <span class="card__minus card__to-buy-buttons">-</span>
-                                                <span class="card__count">1</span>
-                                                <span class="card__plus card__to-buy-buttons">+</span>
-                                                <a href="#" class="card__btn-buy">Купить</a>
-                                            </div>
                                         <hr class="card__line">
                                         </div>
                                     </div>
@@ -243,46 +232,19 @@
                                 <div class="card-wrapper">
                                     <div class="card">
                                         <div class="card__photo">
-                                            <img class="card__img" src="/img/product-1.jpg" alt="product 1">
+                                            <img class="card__img" src="/img/product-4.jpg" alt="product 1">
                                         </div>
                                         <div class="card__info">
                                             <hr class="card__line">
-                                            <h3 class="card__title">card title</h3>
+                                            <a href="#hamburger" class="card__title">Cheddar Jalapeno Chicken Burgers with Guacamole</a href="hamburger">
                                             <hr class="card__line card__line--small">
-                                            <p class="card__price">2640.00$</p>
-                                            <div class="card__to-buy">
-                                                <span class="card__minus card__to-buy-buttons">-</span>
-                                                <span class="card__count">1</span>
-                                                <span class="card__plus card__to-buy-buttons">+</span>
-                                                <a href="#" class="card__btn-buy">Купить</a>
-                                            </div>
-                                        <hr class="card__line">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-wrapper">
-                                    <div class="card">
-                                        <div class="card__photo">
-                                            <img class="card__img" src="/img/product-1.jpg" alt="product 1">
-                                        </div>
-                                        <div class="card__info">
-                                            <hr class="card__line">
-                                            <h3 class="card__title">card title</h3>
-                                            <hr class="card__line card__line--small">
-                                            <p class="card__price">2640.00$</p>
-                                            <div class="card__to-buy">
-                                                <span class="card__minus card__to-buy-buttons">-</span>
-                                                <span class="card__count">1</span>
-                                                <span class="card__plus card__to-buy-buttons">+</span>
-                                                <a href="#" class="card__btn-buy">Купить</a>
-                                            </div>
                                         <hr class="card__line">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- <div class="modal modal--visible modal--message">
                         <div class="modal__inner modal__inner--message">
@@ -379,23 +341,105 @@
 
         </div>
 
+        <div class="banners">
+            <div class="banners__item banner">
+                <img src="/img/banner-1.jpg" alt="" class="banner__img">
+                <a href="#pizza" class="banner__btn inline-btn">Перейти в меню &rarr;</a>
+            </div>
+            <div class="banners__item banner">
+                <img src="/img/banner-2.jpg" alt="" class="banner__img">
+                <a href="#pasta" class="banner__btn inline-btn">Перейти в меню &rarr;</a>
+            </div>
+            <div class="banners__item banner">
+                <img src="/img/banner-3.jpg" alt="" class="banner__img">
+                <a href="#steak" class="banner__btn inline-btn">Перейти в меню &rarr;</a>
+            </div>
+            <div class="banners__item banner">
+                <img src="/img/banner-4.jpg" alt="" class="banner__img">
+                <a href="#hamburger" class="banner__btn inline-btn">Перейти в меню &rarr;</a>
+            </div>
+        </div>
+
+        <div class="top-products page-section">
+            <div class="wrapper">
+                <ul class="tabs">
+                    <li data-tab-num="0" class="tabs__item tabs__item--active">Новинки</li>
+                    <li data-tab-num="1" class="tabs__item">Топ продаж</li>
+                    <li data-tab-num="2" class="tabs__item">Лучшее</li>
+                </ul>
+                <div class="cards tabs__content">
+                    <div class="card-wrapper">
+                        <div class="card">
+                            <div class="card__photo">
+                                <img class="card__img" src="/img/product-1.jpg" alt="product 1">
+                            </div>
+                            <div class="card__info">
+                                <hr class="card__line">
+                                <a href="#pizza" class="card__title">Deep Dish Fruit Pizza</a>
+                                <hr class="card__line card__line--small">
+                            <hr class="card__line">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-wrapper">
+                        <div data-id="46956" class="card">
+                            <div class="card__photo">
+                                <img class="card__img" src="/img/product-2.jpg" alt="product 1">
+                            </div>
+                            <div class="card__info">
+                                <hr class="card__line">
+                                <a href="#pasta" class="card__title">Lasagna Soup</a href="pasta">
+                                <hr class="card__line card__line--small">
+                            <hr class="card__line">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-wrapper">
+                        <div class="card">
+                            <div class="card__photo">
+                                <img class="card__img" src="/img/product-3.jpg" alt="product 1">
+                            </div>
+                            <div class="card__info">
+                                <hr class="card__line">
+                                <a href="#steak" class="card__title">Beef with Snow Peas</a href="steak">
+                                <hr class="card__line card__line--small">
+                            <hr class="card__line">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-wrapper">
+                        <div class="card">
+                            <div class="card__photo">
+                                <img class="card__img" src="/img/product-4.jpg" alt="product 1">
+                            </div>
+                            <div class="card__info">
+                                <hr class="card__line">
+                                <a href="#hamburger" class="card__title">Cheddar Jalapeno Chicken Burgers with Guacamole</a href="hamburger">
+                                <hr class="card__line card__line--small">
+                            <hr class="card__line">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="map">
+            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2538.417559588001!2d30.49593131541813!3d50.489185892454586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cdfc1dec9973%3A0x68ca5d05c7369edc!2z0KLRg9C70YzRgdC60LDRjyDQv9C70L7RidCw0LTRjCwg0JrQuNC10LIsIDAyMDAw!5e0!3m2!1sru!2sua!4v1580766549405!5m2!1sru!2sua" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+             -->
+            <div class="map__wrapper">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2538.417559588001!2d30.49593131541813!3d50.489185892454586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cdfc1dec9973%3A0x68ca5d05c7369edc!2z0KLRg9C70YzRgdC60LDRjyDQv9C70L7RidCw0LTRjCwg0JrQuNC10LIsIDAyMDAw!5e0!3m2!1sru!2sua!4v1580766549405!5m2!1sru!2sua" width="800" height="600" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+            </div>
+        </div>
+
         <footer class="footer" id="footer">
             <p class="footer__privacy">
                 © 2020, Дом обедов, все права защищены
             </p>
             <div class="footer__bottom">
                 <a href="#" class="footer__logo logo">
-                    logo
+                    <img src="img/logo.png" class="logo__img" alt="logo">
                 </a>
-                <div class="footer__search search">
-                    <span class="search__show-all">Все</span>
-                    <input type="text" placeholder="Искать" class="search__input">
-                    <button class="search__btn">
-                        <svg class="search__icon">
-                            <use xlink:href="img/sprite.svg#icon-search"></use>
-                        </svg>
-                    </button>
-                </div>
             </div>
         </footer>
 

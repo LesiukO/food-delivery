@@ -1,0 +1,10 @@
+.map {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__wrapper {
+        margin: 0 auto;
+    }
+}

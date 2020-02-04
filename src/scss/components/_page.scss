@@ -29,4 +29,18 @@
             bottom: -.5rem;
         }
     }
+
+    &__pagination {
+        display: flex;
+        justify-content: center;
+        padding: 2rem 0;
+    }
+
+    &__pagination-btn {
+        display: flex;
+        align-items: center;
+        margin: 0 2rem;
+        border: none;
+        background-color: transparent;
+    }
 }

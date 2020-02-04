@@ -28,6 +28,7 @@ export const renderItems = items => {
 }
 
 export const showTotalSum = (sum) => {
+    sum = Math.ceil(sum * 10) / 10
     document.querySelector('.cart__text').textContent = `(total sum: ${sum}$)`
     if (document.querySelector('.shoping-list__total')) {
         document.querySelector('.shoping-list__total').textContent = `(total sum: ${sum}$)`

@@ -15,6 +15,11 @@ const modalCard = (img, title, price, count) => `
                 </div>
                 <br>
             </div>
+            <div class="modal__ingredients">
+                <ul>
+
+                </ul>
+            </div>
             <div class="modal__to-buy">
                 <span class="modal__minus modal__to-buy-buttons">-</span>
                 <span class="modal__count">${count}</span>
